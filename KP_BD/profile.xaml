@@ -1,0 +1,25 @@
+﻿<Window x:Class="KP_BD.profile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KP_BD"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="profile" WindowStyle="None" AllowsTransparency="True" Height="400.265" Width="689.504" WindowStartupLocation="CenterScreen" Background="{x:Null}">
+    <Grid>
+        <Border CornerRadius="40" Background="#FF4C4466" >
+            <Grid >
+
+                <Button x:Name="on" Content="{materialDesign:PackIcon Eye, Size=20}" HorizontalAlignment="Left" Margin="610,196,0,0" VerticalAlignment="Top" Width="34" Height="32" Padding="0" Background="#4C4013A2" BorderBrush="{x:Null}" Panel.ZIndex="1" Click="Button_Click_4"/>
+                <Button x:Name="off" Content="{materialDesign:PackIcon EyeOff, Size=20}" HorizontalAlignment="Left" Margin="610,196,0,0" VerticalAlignment="Top" Width="34" Height="32" Padding="0" Background="#4C4013A2" BorderBrush="{x:Null}" Panel.ZIndex="1" Click="Button_Click_4" Visibility="Hidden"/>
+                <TextBox x:Name="login_textBox" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.UnderlineBrush="{x:Null}" FontSize="20" Margin="58,95,85,248" CaretBrush="{x:Null}" Foreground="White" Padding="0" />
+                <PasswordBox x:Name="password_textBox1" materialDesign:HintAssist.Hint="Введите пароль"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" CaretBrush="{x:Null}" materialDesign:TextFieldAssist.UnderlineBrush="{x:Null}" Height="59" FontSize="20" PasswordChar="♡" Margin="58,182,85,159" Foreground="White"></PasswordBox>
+                <TextBox x:Name="t_p" Margin="58,196,85,159" FontSize="20" Background="{x:Null}" CaretBrush="{x:Null}" Foreground="White" Visibility="Hidden" />
+                <Button Content="Войти" Margin="149,310,156,46" Background="#99060606" Click="Button_Click_3" BorderBrush="{x:Null}" Height="Auto"/>
+
+                <Button x:Name="close" Content="{materialDesign:PackIcon close, Size=27}" HorizontalAlignment="Left" Margin="624,10,0,0" VerticalAlignment="Top" Width="49" Height="45" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="close_Click" Foreground="#DDFFFFFF"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

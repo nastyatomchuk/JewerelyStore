@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JewerelyStore" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-EAL4D7S\MYSERVER;Initial Catalog=JewerelyStore;Integrated Security=True" SettingsObjectName="KP_BD.Properties.Settings" SettingsPropertyName="JewerelyStoreConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Categories" Member="Categories">
+    <Type Name="Categories">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Categories_Products" Member="Products" ThisKey="id" OtherKey="category_id" Type="Products" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sellers" Member="Sellers">
+    <Type Name="Sellers">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="login" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="position" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="surname" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="patronymic" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Sellers_Purchases" Member="Purchases" ThisKey="id" OtherKey="seller_id" Type="Purchases" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gallery" Member="Gallery">
+    <Type Name="Gallery">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="photo" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="id_product" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_productPhoto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Products_Gallery" Member="Products" ThisKey="id_product" OtherKey="id" Type="Products" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customers">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="surname" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="patronymic" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="NChar(13)" CanBeNull="true" />
+      <Column Name="birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Customers_Purchases" Member="Purchases" ThisKey="id" OtherKey="customer_id" Type="Purchases" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Products" Member="Products">
+    <Type Name="Products">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="material" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="weight" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="inserts" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="vendor_code" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="sample" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="category_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="size" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Products_Gallery" Member="Gallery" ThisKey="id" OtherKey="id_product" Type="Gallery" />
+      <Association Name="Products_Purchases" Member="Purchases" ThisKey="id" OtherKey="product_id" Type="Purchases" />
+      <Association Name="Categories_Products" Member="Categories" ThisKey="category_id" OtherKey="id" Type="Categories" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Purchases" Member="Purchases">
+    <Type Name="Purchases">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="product_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="seller_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Customers_Purchases" Member="Customers" ThisKey="customer_id" OtherKey="id" Type="Customers" IsForeignKey="true" />
+      <Association Name="Products_Purchases" Member="Products" ThisKey="product_id" OtherKey="id" Type="Products" IsForeignKey="true" />
+      <Association Name="Sellers_Purchases" Member="Sellers" ThisKey="seller_id" OtherKey="id" Type="Sellers" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
